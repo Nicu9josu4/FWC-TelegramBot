@@ -1,20 +1,19 @@
-﻿using BookmakerTelegramBot.Models;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System;
-using System.Resources;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
+using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Resources;
+using System.Threading;
+using Telegram.Bot.Types.ReplyMarkups;
 using Keyboards = BookmakerTelegramBot.Models.MainKeyboards;
 using TotalPages = BookmakerTelegramBot.Models.TotalPages;
 using Users = BookmakerTelegramBot.Models.Users;
-using Telegram.Bot.Types.ReplyMarkups;
-using System.Linq;
-using System.Threading;
-using System.Globalization;
 
 namespace BookmakerTelegramBot.Controllers
 {

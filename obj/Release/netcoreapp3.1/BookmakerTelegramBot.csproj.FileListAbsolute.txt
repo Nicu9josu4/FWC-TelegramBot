@@ -70,3 +70,4 @@ C:\Users\amonn\source\repos\BookmakerTelegramBot\obj\Release\netcoreapp3.1\Bookm
 C:\Users\amonn\source\repos\BookmakerTelegramBot\bin\Release\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
 C:\Users\amonn\source\repos\BookmakerTelegramBot\bin\Release\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\amonn\source\repos\BookmakerTelegramBot\bin\Release\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Users\amonn\source\repos\BookmakerTelegramBot\bin\Release\netcoreapp3.1\nlog.config

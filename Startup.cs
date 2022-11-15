@@ -32,9 +32,6 @@ namespace BookmakerTelegramBot
             TelegramClientRun.connectionString = Configuration.GetConnectionString("DefaultConnection");
             TelegramClientRun.Token = Configuration.GetValue<string>("TOKEN:DefaultToken");
             _ = TelegramClientRun.StartClient();
-            //services.AddSingleton<IConfiguration>(Configuration);
-            
-            //TelegramClientRun.users.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -31,9 +31,7 @@ namespace BookmakerTelegramBot.Sevices
         public Keyboards keyboards = new Keyboards();
         public string connectionString;
         public string Token;
-        //public string Configuration.GetConnectionString("DefaultConnection") = Configuration.GetConnectionString("DefaultConnection");
         public ResourceManager ResManager = new ResourceManager("BookmakerTelegramBot.Resources.Resources", Assembly.GetExecutingAssembly());
-
         public async Task StartClient()
         {
             var bot = new TelegramBotClient(Token);
@@ -396,6 +394,7 @@ namespace BookmakerTelegramBot.Sevices
                     if (currentUser.CallBackData == "prognoseHistory")
                     {
                         currentUser.CurentHistoryPage = 0;
+                        await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, Controller.ChangeSelectHistoryPage(currentUser.UserID, currentUser.CurentHistoryPage) + ".", replyMarkup: keyboards.MenuKeyboardHistory);
                         await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, Controller.ChangeSelectHistoryPage(currentUser.UserID, currentUser.CurentHistoryPage), replyMarkup: keyboards.MenuKeyboardHistory);
                         return;
                     }
@@ -571,7 +570,7 @@ namespace BookmakerTelegramBot.Sevices
 
                         if (cq.Data == "WinnerTeam FirstPage")
                         {
-                            currentUser.CurentTeamPage = 0;
+                            currentUser.CurentTeamPage = currentUser.CurentTeamPage == null ? 0 : currentUser.CurentTeamPage;
                             Controller.ChangeSelectWinnerTeamPage(currentUser.UserID, (int)currentUser.CurentTeamPage);
                             await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, ResManager.GetString("Register the final winner team") + ".", replyMarkup: keyboards.MenuKeyboardSelectFinalWinnerTeam);
                             await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, ResManager.GetString("Register the final winner team"), replyMarkup: keyboards.MenuKeyboardSelectFinalWinnerTeam);
@@ -608,7 +607,7 @@ namespace BookmakerTelegramBot.Sevices
                             }
                             else
                             {
-                                currentUser.CurentTeamPage = 0;
+                                currentUser.CurentTeamPage = currentUser.CurentTeamPage == null ? 0 : currentUser.CurentTeamPage;
                                 Controller.ChangeSelectWinnerTeamPage(currentUser.UserID, (int)currentUser.CurentTeamPage);
                                 await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, ResManager.GetString("Register the final winner team") + ".", replyMarkup: keyboards.MenuKeyboardSelectFinalWinnerTeam);
                                 await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, ResManager.GetString("Register the final winner team"), replyMarkup: keyboards.MenuKeyboardSelectFinalWinnerTeam);
@@ -628,7 +627,7 @@ namespace BookmakerTelegramBot.Sevices
 
                         if (cq.Data == "Winner FirstPage")
                         {
-                            currentUser.CurentMatchPage = 0;
+                            currentUser.CurentMatchPage = currentUser.CurentMatchPage == null ? 0 : currentUser.CurentMatchPage;
                             Controller.ChangeSelectWinnerPage(currentUser.UserID, (int)currentUser.CurentMatchPage);
                             await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, ResManager.GetString("Register prognose for this matches") + ".", replyMarkup: keyboards.MenuKeyboardSelectWinner);
                             await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, ResManager.GetString("Register prognose for this matches"), replyMarkup: keyboards.MenuKeyboardSelectWinner);
@@ -665,7 +664,7 @@ namespace BookmakerTelegramBot.Sevices
                             }
                             else
                             {
-                                currentUser.CurentMatchPage = 0;
+                                currentUser.CurentMatchPage = currentUser.CurentMatchPage == null ? 0 : currentUser.CurentMatchPage;
                                 Controller.ChangeSelectWinnerPage(currentUser.UserID, (int)currentUser.CurentMatchPage);
                                 await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, ResManager.GetString("Register prognose for this matches") + ".", replyMarkup: keyboards.MenuKeyboardSelectWinner);
                                 await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, ResManager.GetString("Register prognose for this matches"), replyMarkup: keyboards.MenuKeyboardSelectWinner);
@@ -685,7 +684,7 @@ namespace BookmakerTelegramBot.Sevices
 
                         if (cq.Data == "Players FirstPage")
                         {
-                            currentUser.CurentPlayersPage = 0;
+                            currentUser.CurentPlayersPage = currentUser.CurentPlayersPage == null ? 0 : currentUser.CurentPlayersPage;
                             Controller.ChangeSelectPlayersPage(currentUser.UserID, currentUser.VotedPlayerTeam, (int)currentUser.CurentPlayersPage);
                             await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, $"{ResManager.GetString("Select player from team")} {currentUser.VotedPlayerTeam}.", replyMarkup: keyboards.MenuKeyboardSelectPlayer);
                             await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, $"{ResManager.GetString("Select player from team")} {currentUser.VotedPlayerTeam}", replyMarkup: keyboards.MenuKeyboardSelectPlayer);
@@ -722,7 +721,7 @@ namespace BookmakerTelegramBot.Sevices
                             }
                             else
                             {
-                                currentUser.CurentPlayersPage = 0;
+                                currentUser.CurentPlayersPage = currentUser.CurentPlayersPage == null ? 0 : currentUser.CurentPlayersPage;
                                 Controller.ChangeSelectPlayersPage(currentUser.UserID, currentUser.VotedPlayerTeam, (int)currentUser.CurentPlayersPage);
                                 await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, $"{ResManager.GetString("Select player from team")} {currentUser.VotedPlayerTeam}.", replyMarkup: keyboards.MenuKeyboardSelectPlayer);
                                 await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, $"{ResManager.GetString("Select player from team")} {currentUser.VotedPlayerTeam}", replyMarkup: keyboards.MenuKeyboardSelectPlayer);
@@ -742,7 +741,7 @@ namespace BookmakerTelegramBot.Sevices
 
                         if (cq.Data == "TopVoters FirstPage")
                         {
-                            currentUser.CurentTopVotersPage = 0;
+                            currentUser.CurentTopVotersPage = currentUser.CurentTopVotersPage == null ? 0 : currentUser.CurentTopVotersPage;
                             Controller.ChangeSelectTopVotersPage(currentUser.UserID, (int)currentUser.CurentTopVotersPage);
                             await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, ResManager.GetString("See the best voters") + ".", replyMarkup: keyboards.MenuKeyboardSelectTopVoter);
                             await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, ResManager.GetString("See the best voters"), replyMarkup: keyboards.MenuKeyboardSelectTopVoter);
@@ -779,7 +778,7 @@ namespace BookmakerTelegramBot.Sevices
                             }
                             else
                             {
-                                currentUser.CurentTopVotersPage = 0;
+                                currentUser.CurentTopVotersPage = currentUser.CurentTopVotersPage == null ? 0 : currentUser.CurentTopVotersPage;
                                 Controller.ChangeSelectTopVotersPage(currentUser.UserID, (int)currentUser.CurentTopVotersPage);
                                 await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, ResManager.GetString("See the best voters") + ".", replyMarkup: keyboards.MenuKeyboardSelectTopVoter);
                                 await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, ResManager.GetString("See the best voters"), replyMarkup: keyboards.MenuKeyboardSelectTopVoter);
@@ -799,7 +798,7 @@ namespace BookmakerTelegramBot.Sevices
 
                         if (cq.Data == "History FirstPage")
                         {
-                            currentUser.CurentHistoryPage = 0;
+                            currentUser.CurentHistoryPage = currentUser.CurentHistoryPage == null ? 0 : currentUser.CurentHistoryPage;
                             await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, Controller.ChangeSelectHistoryPage(currentUser.UserID, (int)currentUser.CurentHistoryPage) + ".", replyMarkup: keyboards.MenuKeyboardHistory);
                             await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, Controller.ChangeSelectHistoryPage(currentUser.UserID, (int)currentUser.CurentHistoryPage), replyMarkup: keyboards.MenuKeyboardHistory);
                         }
@@ -830,7 +829,7 @@ namespace BookmakerTelegramBot.Sevices
                             else
                             {
                                 if (currentUser.CurentHistoryPage == 0) await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, $"{Controller.ChangeSelectHistoryPage(currentUser.UserID, (int)currentUser.CurentHistoryPage)}.", replyMarkup: keyboards.MenuKeyboardHistory);
-                                currentUser.CurentHistoryPage = 0;
+                                currentUser.CurentHistoryPage = currentUser.CurentHistoryPage == null ? 0 : currentUser.CurentHistoryPage;
                                 await botClient.EditMessageTextAsync(currentUser.UserID, cq.Message.MessageId, Controller.ChangeSelectHistoryPage(currentUser.UserID, (int)currentUser.CurentHistoryPage), replyMarkup: keyboards.MenuKeyboardHistory);
                                 return;
                             }
